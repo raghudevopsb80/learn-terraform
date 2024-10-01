@@ -1,20 +1,14 @@
 variable "repos" {
   default = [
     "roboshop-cart",
-    "roboshop-catalogue",
-    "roboshop-user",
-    "roboshop-shipping",
-    "roboshop-payment",
-    "roboshop-frontend"
+    "roboshop-catalogue"
   ]
 }
 
 variable "ENV" {
   default = [
     "DEV",
-    "QA",
-    "UAT",
-    "PROD"
+    "QA"
   ]
 }
 
@@ -24,6 +18,6 @@ locals {
 }
 
 output "map" {
-   value = [ for a,b in local.l1["l1"]: a ]
+   value = [ for a,b in local.l1["l1"]: b ]
 }
 
