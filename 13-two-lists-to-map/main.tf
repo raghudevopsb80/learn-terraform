@@ -24,6 +24,6 @@ locals {
 }
 
 output "map" {
-   value = { for a,b in local.l1["l1"]: "${a}_${a.env}" => b }
+   value = { for a,b in local.l1["l1"]: "${a}_${b.env}" => b }
 }
 
