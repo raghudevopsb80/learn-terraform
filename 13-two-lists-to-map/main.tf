@@ -1,23 +1,47 @@
+# variable "repos" {
+#   default = [
+#     "roboshop-cart",
+#     "roboshop-catalogue"
+#   ]
+# }
+#
+# variable "ENV" {
+#   default = [
+#     "DEV",
+#     "QA"
+#   ]
+# }
+#
+# locals {
+#   X = {for k in var.repos: k => [for i in var.ENV: {"repo_name" = k, "env" = i}]}
+#   l1 = tomap({"l1" = local.X})
+# }
+#
+# output "map" {
+#    value = [ for a,b in local.l1["l1"]: b ]
+# }
+#
+
 variable "repos" {
-  default = [
-    "roboshop-cart",
-    "roboshop-catalogue"
-  ]
+  default = {
+    "roboshop-cart" = {}
+    "roboshop-catalogue" = {}
+  }
 }
 
-variable "ENV" {
-  default = [
-    "DEV",
-    "QA"
-  ]
+variable "env" {
+  default = {
+    "DEV" = {}
+    "QA" = {}
+    "UAT" = {}
+    "PROD" = {}
+  }
 }
 
 locals {
-  X = {for k in var.repos: k => [for i in var.ENV: {"repo_name" = k, "env" = i}]}
-  l1 = tomap({"l1" = local.X})
+  repos_with_envs = {for i,j in var.repos : i => { for x,y in var.env : x => {} }}
 }
 
-output "map" {
-   value = [ for a,b in local.l1["l1"]: b ]
+output "x" {
+  value = local.repos_with_envs
 }
-
