@@ -18,20 +18,7 @@ variable "ENV" {
   ]
 }
 
-locals {
-  repo_env_map = {
-    for repo in var.repos :
-      for env in var.ENV :
-        "${repo}_${env}" => {
-            repo_name = repo
-            env       = env
-        }
-      }
-}
-
-
 output "map" {
-   #value = { for k in var.repos: for i in var.ENV: "${k}_${i}" => {"repo_name" = k, "env" = i}}
-        value = local.repo_env_map
+   value = {for k in var.repos: k => [for i in var.ENV: {"repo_name" = k, "env" = i}]}
 }
 
