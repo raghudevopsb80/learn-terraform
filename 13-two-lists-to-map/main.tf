@@ -19,6 +19,6 @@ variable "ENV" {
 }
 
 output "map" {
-  value = {for k in var.repos: k => k}
+  value = {for k in var.repos: k => {"repo_name" = k }}
 }
 
