@@ -18,7 +18,11 @@ variable "ENV" {
   ]
 }
 
+locals {
+  X = {for k in var.repos: k => [for i in var.ENV: {"repo_name" = k, "env" = i}]}
+}
+
 output "map" {
-   value = {for k in var.repos: k => [for i in var.ENV: {"repo_name" = k, "env" = i}]}
+   value = { for a,b in local.X: "${a}_${a.env}" => $j }
 }
 
