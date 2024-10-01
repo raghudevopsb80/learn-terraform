@@ -23,6 +23,6 @@ locals {
 }
 
 output "map" {
-   value = local.X[0]
+   value = tomap({"l1" = local.X})
 }
 
