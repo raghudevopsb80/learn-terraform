@@ -23,6 +23,6 @@ locals {
 }
 
 output "map" {
-   value = { for a,b in local.X: "${a}_${a.env}" => $j }
+   value = local.X[0]
 }
 
