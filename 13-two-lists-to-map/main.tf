@@ -39,7 +39,7 @@ variable "env" {
 }
 
 locals {
-  repos_with_envs = {for i,j in var.repos : i => { for x,y in var.env : x => {} }}
+  repos_with_envs = {for i,j in var.repos : i => { for x,y in var.env : "${i}_${x}" => {"env" = x, "app" = i} }}
 }
 
 output "x" {
