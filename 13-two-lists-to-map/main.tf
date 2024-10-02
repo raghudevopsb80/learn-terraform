@@ -43,5 +43,5 @@ locals {
 }
 
 output "x" {
-  value = values(local.repos_with_envs)
+  value = merge(values(local.repos_with_envs))
 }
