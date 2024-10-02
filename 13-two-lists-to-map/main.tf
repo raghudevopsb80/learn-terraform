@@ -43,5 +43,5 @@ locals {
 }
 
 output "x" {
-  value = concat(concat([for a,b in local.repos_with_envs: values(b)]))
+  value = flatten([for a,b in local.repos_with_envs: values(b)])
 }
